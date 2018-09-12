@@ -6,9 +6,7 @@ import Router from './routes/router';
 
 class App extends Component {
   render() {
-    return (
-      <Router {...this.props}/>
-    );
+    return <Router {...this.props} />;
   }
 }
 

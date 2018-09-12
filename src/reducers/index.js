@@ -6,10 +6,9 @@ import survey from './survey';
 * Root Reducers 
 */
 
-
 const rootReducer = combineReducers({
   routing: routerReducer,
-  survey
+  survey,
 });
 
 export default rootReducer;

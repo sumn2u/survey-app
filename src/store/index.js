@@ -21,7 +21,10 @@ const history = createBrowserHistory();
  */
 const historyMiddleware = routerMiddleware(history);
 const middlewares = applyMiddleware(thunk, historyMiddleware);
-const store = createStore(connectRouter(history)(rootReducer), composeWithDevTools(middlewares));
+const store = createStore(
+  connectRouter(history)(rootReducer),
+  composeWithDevTools(middlewares),
+);
 
 export { history };
 export default store;

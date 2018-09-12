@@ -1,78 +1,77 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700');
 
-body{
-    background: #f2f2f2;
-    font-family: 'Josefin Sans', sans-serif;
+body {
+  background: #f2f2f2;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-h3{
-     font-family: 'Josefin Sans', sans-serif;
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-.box{
-    padding:60px 0px;
+.box {
+  padding: 60px 0px;
 }
 
-.box-part{
-    background:#FFF;
-    border-radius:10px;
-    padding:60px 10px;
-    margin:30px 0px;
+.box-part {
+  background: #fff;
+  border-radius: 10px;
+  padding: 60px 10px;
+  margin: 30px 0px;
 }
 
-.box-part:hover{
-    background:#4183D7;
+.box-part:hover {
+  background: #4183d7;
 }
 
-.box-part:hover .fa , 
-.box-part:hover .title , 
-.box-part:hover .text ,
-.box-part:hover a{
-    color:#FFF;
-    -webkit-transition: all 1s ease-out;
-    -moz-transition: all 1s ease-out;
-    -o-transition: all 1s ease-out;
-    transition: all 1s ease-out;
+.box-part:hover .fa,
+.box-part:hover .title,
+.box-part:hover .text,
+.box-part:hover a {
+  color: #fff;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  transition: all 1s ease-out;
 }
 
-.text{
-    margin:20px 0px;
+.text {
+  margin: 20px 0px;
 }
 
-.fa{
-     color:#4183D7;
+.fa {
+  color: #4183d7;
 }
 
-.gi-3x{
+.gi-3x {
   font-size: 3em;
 }
 
 /* loading */
 .loading {
- margin-top: 100px;
+  margin-top: 100px;
 }
 
 /* scroll */
 .scroll {
-    opacity: 0.3;
-    background-color: #4183D7;
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    border-radius: 5px;
-    border: none;
-  }
-  .scroll:hover {
-    opacity: 1;
-  }
-  .arrow-up {
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -9px;
-    margin-left: -5px;
-  }
-  
+  opacity: 0.3;
+  background-color: #4183d7;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 5px;
+  border: none;
+}
+.scroll:hover {
+  opacity: 1;
+}
+.arrow-up {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -5px;
+}

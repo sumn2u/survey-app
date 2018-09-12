@@ -5,7 +5,7 @@ import { BASE_URL } from '../config/environment';
 const instance = axios.create({
   baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
-  timeout: 0
+  timeout: 0,
 });
 
 instance.interceptors.response.use(
@@ -24,7 +24,7 @@ instance.interceptors.response.use(
       // toast.info("We cannot seem to reach our servers. Please check your internet connection and try again", {autoClose: false});
       return Promise.reject(error.response);
     } else if (error.response.status === 401) {
-      // unathorized access 
+      // unathorized access
       return Promise.reject(error.response);
     } else if (error.response.status === 403) {
       // Forbidden
@@ -37,7 +37,7 @@ instance.interceptors.response.use(
       // we don't know what's going on
       return Promise.reject(error.response);
     }
-  }
+  },
 );
 
 export const rootURL = BASE_URL;
