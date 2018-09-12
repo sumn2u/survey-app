@@ -31,3 +31,7 @@ export function getSurveyById(surveyId) {
         });
     }
 }
+
+export function submitSurvey(submitResult) {
+    console.log("result", submitResult)
+}

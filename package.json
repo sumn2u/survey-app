@@ -8,6 +8,7 @@
     "bootstrap": "3",
     "connected-react-router": "^4.4.0",
     "dom-testing-library": "^3.5.1",
+    "formik": "^1.3.0",
     "jest-dom": "^1.12.0",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.4",

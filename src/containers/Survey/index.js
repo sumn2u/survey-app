@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Loading from '../../components/Loading'
 import SurveyList from '../../components/SurveyList'
 import * as SurveyAction from '../../services/survey'
+import SurveyQuestion from '../../components/SurveyQuestion'
 
 class Survey extends Component {
 	constructor(props, context) {
@@ -28,7 +29,9 @@ class Survey extends Component {
 		}
     
 	}//end component did mount
-
+	submitSurvey(surveyId, values) {
+		console.log("data", surveyId, values)
+	}
 	componentWillReceiveProps (nextProps) {
 
 		let paramId = nextProps.match.params.id
@@ -53,7 +56,7 @@ class Survey extends Component {
 	}
 
 	render () {
-		let { surveys } = this.props
+		let { surveys, isSuccess, currentSurvey } = this.props
 		let { loading, surveyId } = this.state
 		return (
 			<div className="box">
@@ -61,7 +64,7 @@ class Survey extends Component {
 						<h3 className="text-center"> Dalia's Survey </h3>
 						<div className="row">
 							{/* Survey List */}			
-							{ loading ? (<Loading/>):( surveyId ? ('idk') 
+							{ loading ? (<Loading/>):( (surveyId && currentSurvey) ? (<SurveyQuestion survey={currentSurvey} isLoading={loading} error={''}  handleSubmit ={this.submitSurvey.bind(this)} isSuccess={isSuccess}/>) 
 								: (<SurveyList surveys={surveys}/>)
 							) }
 					  </div>    
@@ -77,13 +80,15 @@ const mapStateToProps = (state)=>{
   return {
 		surveys:state.survey.surveyList.surveys,
 		loading:state.survey.surveyList.loading,
-		currentSurvey:state.survey.surveyList.currentSurvey
+		currentSurvey:state.survey.surveyList.currentSurvey,
+		isSuccess:false
   }
 }  
 
 const mapDispatchToProps = (dispatch) => ({
 		fetchSurveys: () => dispatch(SurveyAction.getSurveys()),
-		fetchSurveyById: (surveyId) => dispatch(SurveyAction.getSurveyById(surveyId))
+		fetchSurveyById: (surveyId) => dispatch(SurveyAction.getSurveyById(surveyId)),
+		onSubmit:(submitResult) => dispatch(SurveyAction.submitSurvey(submitResult))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Survey)
