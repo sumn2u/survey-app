@@ -1,0 +1,1 @@
+export const SURVEYS = 'FETCH_SURVEYS' ;
