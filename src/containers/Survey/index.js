@@ -10,35 +10,63 @@ class Survey extends Component {
 		super(props, context)
 		 this.state = {
 			loading:true,
-			surveys:[]
+			surveys:[], 
+			surveyId:'',
+			currentSurvey:null
 		}
 	}
 
 	componentDidMount () {
-        this.props.fetchSurveys();
+		let surveyId = this.props.match.params.id
+		this.setState({surveyId}) //set the current survey
+		if(surveyId) {
+			this.props.fetchSurveys().then(() => {
+				this.props.fetchSurveyById(surveyId)
+			})
+		}else {
+			this.props.fetchSurveys()
+		}
+    
 	}//end component did mount
 
 	componentWillReceiveProps (nextProps) {
+
+		let paramId = nextProps.match.params.id
+		let  { surveyId } = this.state
+		let { currentSurvey } = this.props
+		if(!paramId) this.setState({surveyId:null}) //  
+	
+		/** check if weather the last survey is equal to current survey if not set the current value */
+		if((paramId && surveyId && paramId !== surveyId) || (paramId && paramId !== surveyId)){
+			this.setState({surveyId:paramId})
+			// check if the question is in the store or not if present don't load
+			if(!currentSurvey){
+					this.props.fetchSurveyById(paramId)
+			} else {
+				// load the new data into the store
+				if(currentSurvey.id !== paramId){
+					this.props.fetchSurveyById(paramId)
+				}
+			} 
+		}
 		this.setState({loading: nextProps.loading})
 	}
 
 	render () {
 		let { surveys } = this.props
-		let { loading } = this.state
+		let { loading, surveyId } = this.state
 		return (
-                <div className="box">
-                    <div className="container">
-					    <h3 className="text-center"> Survey </h3>
-     	                <div className="row">
-						 {/* Survey List */}
-						  
-						{loading ? (<Loading/>) :(
-						   <SurveyList surveys={surveys}/>
-						 )}
-                     </div>
-                     
-               </div>
-             </div>
+			<div className="box">
+					<div className="container">
+						<h3 className="text-center"> Dalia's Survey </h3>
+						<div className="row">
+							{/* Survey List */}			
+							{ loading ? (<Loading/>):( surveyId ? ('idk') 
+								: (<SurveyList surveys={surveys}/>)
+							) }
+					  </div>    
+				</div>
+			</div>
 		)
 	}
 	/*end class Start*/
@@ -47,13 +75,15 @@ class Survey extends Component {
 
 const mapStateToProps = (state)=>{
   return {
-	surveys:state.survey.surveyList.surveys,
-	loading:state.survey.surveyList.loading
+		surveys:state.survey.surveyList.surveys,
+		loading:state.survey.surveyList.loading,
+		currentSurvey:state.survey.surveyList.currentSurvey
   }
 }  
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchSurveys: () => dispatch(SurveyAction.getSurveys())
+		fetchSurveys: () => dispatch(SurveyAction.getSurveys()),
+		fetchSurveyById: (surveyId) => dispatch(SurveyAction.getSurveyById(surveyId))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Survey)

@@ -17,16 +17,16 @@ export function getSurveys() {
     }
 }
 
-export function getSurveyById() {
+export function getSurveyById(surveyId) {
     return (dispatch, getState) => {
-        let surveyId= 123
         return axios.request({
             method: 'GET',
             url: `${BASE_URL}/surveys/${surveyId}`
         }).then((response)=>{
+            let surveyResponse = { data:response.data.survey, surveyId:surveyId}
             dispatch({
-                type: types.SURVEYS,
-                payload: response.data
+                type: types.SINGLE_SURVEY,
+                payload: surveyResponse
             });
         });
     }

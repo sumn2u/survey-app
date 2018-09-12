@@ -1,8 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch } from 'react-router-dom'
 import Survey from '.././containers/Survey'
-// import SurveyDetails from '.././containers/SurveyDetails'
-// import { getSurveyById } from '../services/survey';
 
 const Router = () => (
   <BrowserRouter basename="/survey-app">
