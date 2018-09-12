@@ -13,7 +13,6 @@ instance.interceptors.response.use(
     return response;
   },
   error => {
-    const config = error.config;
     // Do something with response error
     if (typeof error === 'undefined') {
       // request cancelled

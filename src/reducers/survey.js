@@ -1,5 +1,3 @@
-import { BASE_URL } from '../config/environment';
-
 const initialState = {
     surveyList: {
         surveys:[] ,
@@ -12,7 +10,6 @@ export default (state = initialState, action) => {
 
     switch(action.type) {
         case 'FETCH_SURVEYS':
-        console.log(state,action.payload, 'idk')
             return {
                 ...state,
                 surveyList: { surveys: action.payload.surveys, error:null,      

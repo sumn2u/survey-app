@@ -12,7 +12,7 @@ const SurveyList = ({surveys}) => {
                 </div>
             </div>
     ) : (
-    "no surveys"
+    <span className="text-center"> no surveys </span>
     ) 
 
 } 

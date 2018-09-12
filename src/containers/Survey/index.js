@@ -25,7 +25,6 @@ class Survey extends Component {
 	render () {
 		let { surveys } = this.props
 		let { loading } = this.state
-		console.log(loading)
 		return (
                 <div className="box">
                     <div className="container">
