@@ -3,6 +3,7 @@ const initialState = {
         surveys:[] ,
         loading:false, 
         error:null,
+        success:false,
         currentSurvey:null
     }
 }
@@ -23,13 +24,18 @@ export default (state = initialState, action) => {
             newState.surveyList.currentSurvey = payload.data
             /** filter from our current survey and push the value */
             surveys.filter((survey) => { 
-                if(survey.id === payload.surveyId){
-                survey.questions = payload.data.questions
+                if (survey.id === payload.surveyId) {
+                    survey.questions = payload.data.questions
                 }
-            return survey;
+                return survey;
             })
             return {
                 ...newState
+            }
+        case 'SUBMIT_SURVEY':
+            return {
+             ...state,
+             success:true
             }
         default:
             return state

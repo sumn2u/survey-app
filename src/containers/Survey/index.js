@@ -5,6 +5,7 @@ import Loading from '../../components/Loading'
 import SurveyList from '../../components/SurveyList'
 import * as SurveyAction from '../../services/survey'
 import SurveyQuestion from '../../components/SurveyQuestion'
+import Notifications from 'react-notify-toast';
 
 class Survey extends Component {
 	constructor(props, context) {
@@ -13,7 +14,8 @@ class Survey extends Component {
 			loading:true,
 			surveys:[], 
 			surveyId:'',
-			currentSurvey:null
+			currentSurvey:null,
+			error:''
 		}
 	}
 
@@ -30,7 +32,10 @@ class Survey extends Component {
     
 	}//end component did mount
 	submitSurvey(surveyId, values) {
-		console.log("data", surveyId, values)
+		this.props.submitSurvey()
+	}
+	handleError(){
+		this.setState({error: 'all questions are necessary'})
 	}
 	componentWillReceiveProps (nextProps) {
 
@@ -57,14 +62,15 @@ class Survey extends Component {
 
 	render () {
 		let { surveys, isSuccess, currentSurvey } = this.props
-		let { loading, surveyId } = this.state
+		let { loading, surveyId , error} = this.state
 		return (
 			<div className="box">
 					<div className="container">
+						<Notifications/>
 						<h3 className="text-center"> Dalia's Survey </h3>
 						<div className="row">
 							{/* Survey List */}			
-							{ loading ? (<Loading/>):( (surveyId && currentSurvey) ? (<SurveyQuestion survey={currentSurvey} isLoading={loading} error={''}  handleSubmit ={this.submitSurvey.bind(this)} isSuccess={isSuccess}/>) 
+							{ loading ? (<Loading/>):( (surveyId && currentSurvey) ? (<SurveyQuestion survey={currentSurvey} isLoading={loading} error={error} handleError={this.handleError.bind(this)} handleSubmit ={this.submitSurvey.bind(this)} isSuccess={isSuccess}/>) 
 								: (<SurveyList surveys={surveys}/>)
 							) }
 					  </div>    
@@ -81,14 +87,14 @@ const mapStateToProps = (state)=>{
 		surveys:state.survey.surveyList.surveys,
 		loading:state.survey.surveyList.loading,
 		currentSurvey:state.survey.surveyList.currentSurvey,
-		isSuccess:false
+		isSuccess:state.survey.success
   }
 }  
 
 const mapDispatchToProps = (dispatch) => ({
 		fetchSurveys: () => dispatch(SurveyAction.getSurveys()),
 		fetchSurveyById: (surveyId) => dispatch(SurveyAction.getSurveyById(surveyId)),
-		onSubmit:(submitResult) => dispatch(SurveyAction.submitSurvey(submitResult))
+		submitSurvey:(surveyId, submitResult) => dispatch(SurveyAction.submitSurvey(surveyId, submitResult))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Survey)

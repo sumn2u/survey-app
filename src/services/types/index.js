@@ -1,2 +1,3 @@
-export const SURVEYS = 'FETCH_SURVEYS' ;
-export const SINGLE_SURVEY = 'SINGLE_SURVEY' ;
+export const SURVEYS = 'FETCH_SURVEYS';
+export const SINGLE_SURVEY = 'SINGLE_SURVEY';
+export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';

@@ -3,7 +3,7 @@ import { BASE_URL } from '../config/environment'
 import * as types from './types';
 /* Get the list of surveys */
 export function getSurveys() {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         
         return axios.request({
             method: 'GET',
@@ -18,7 +18,7 @@ export function getSurveys() {
 }
 
 export function getSurveyById(surveyId) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         return axios.request({
             method: 'GET',
             url: `${BASE_URL}/surveys/${surveyId}`
@@ -32,6 +32,17 @@ export function getSurveyById(surveyId) {
     }
 }
 
-export function submitSurvey(submitResult) {
-    console.log("result", submitResult)
+export function submitSurvey(surveyId, submitResult) {
+    return (dispatch) => {
+        return axios.request({
+            method: 'POST',
+            url: `${BASE_URL}/surveys/${surveyId}/completions`,
+            data: submitResult
+        }).then((response)=>{
+            dispatch({
+                type: types.SUBMIT_SURVEY,
+                payload:  response.data
+            });
+        });
+    }
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import ChoiceQuestions from '../ChoiceQuestions';
 import ScrollButton from '../ScrollButton';
 import { withFormik } from 'formik';
+import {notify} from 'react-notify-toast';
 import {Link} from 'react-router-dom';
 class SurveyQuestion extends React.Component {
   renderError() {
@@ -28,7 +29,8 @@ class SurveyQuestion extends React.Component {
     }
 
     if (error) {
-      return this.renderError();
+        let myColor = { background: '#e3c23f', text: "#FFFFFF" };
+        notify.show("All questions should be answered ! ", "custom", 2000, myColor);
     }
 
     if (!survey) {
@@ -36,7 +38,8 @@ class SurveyQuestion extends React.Component {
     }
 
     if (isSuccess) {
-      return this.renderSuccess();
+        let myColor = { background: '#0E1717', text: "#FFFFFF" };
+        notify.show("Thanks for answering the survey! ", "custom", 2000, myColor);
     }
 
     return (
@@ -70,6 +73,12 @@ class SurveyQuestion extends React.Component {
 export default withFormik({
   mapPropsToValues: () => {},
   handleSubmit: ( values, { props }) => {
-    props.handleSubmit(props.survey.id, values)
+   
+    if(Object.keys(values).length === props.survey.questions.length){
+        props.handleSubmit(props.survey.id, values)
+    }else{
+      props.handleError() /** call the error */
+    } 
+    // props.handleSubmit(props.survey.id, values)
   }
 })(SurveyQuestion);
