@@ -5,7 +5,7 @@ import Survey from '.././containers/Survey'
 // import { getSurveyById } from '../services/survey';
 
 const Router = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/survey-app">
     <Switch>
       <Route  exact={true} path='/' component={Survey}/>
       <Route  exact={true} path='/surveys' component={Survey}/>
