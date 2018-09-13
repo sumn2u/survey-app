@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 export default class ScrollButton extends React.Component {
   constructor() {
     super();
