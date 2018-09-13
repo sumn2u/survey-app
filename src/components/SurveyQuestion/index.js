@@ -45,6 +45,7 @@ class SurveyQuestion extends React.Component {
     if (isSuccess) {
       let myColor = { background: '#0E1717', text: '#FFFFFF' };
       notify.show('Thanks for answering the survey! ', 'custom', 2000, myColor);
+      setTimeout(() => { window.location.href="/"} , 2100);  //eslint-disable-next-line
     }
 
     return (
@@ -84,6 +85,7 @@ export default withFormik({
   mapPropsToValues: () => {},
   handleSubmit: (values, { props }) => {
     if (Object.keys(values).length === props.survey.questions.length) {
+      debugger;
       props.handleSubmit(props.survey.id, values);
     } else {
       props.handleError(); /** call the error */

@@ -31,7 +31,7 @@ class Survey extends Component {
     }
   } //end component did mount
   submitSurvey(surveyId, values) {
-    this.props.submitSurvey();
+    this.props.submitSurvey(surveyId, values);
   }
   handleError() {
     this.setState({ error: 'all questions are necessary' });
