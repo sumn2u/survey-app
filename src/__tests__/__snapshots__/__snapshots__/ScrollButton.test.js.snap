@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scroll button renders correctly 1`] = `
+<button
+  className="scroll"
+  onClick={[Function]}
+  title="Back to top"
+>
+  <span
+    className="arrow-up glyphicon glyphicon-chevron-up"
+  />
+</button>
+`;

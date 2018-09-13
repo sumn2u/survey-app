@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`survey list renders correctly 1`] = `
+<span
+  className="text-center"
+>
+   no surveys 
+</span>
+`;
