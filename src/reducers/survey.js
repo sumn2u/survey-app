@@ -40,6 +40,21 @@ export default (state = initialState, action) => {
         ...state,
         success: true,
       };
+    case 'SURVEYS_ERROR':
+      return {
+        ...state,
+        error: true,
+      };
+    case 'SURVEY_ERROR':
+      return {
+        ...state,
+        error: true,
+      };
+    case 'SUBMIT_ERROR':
+      return {
+        ...state,
+        error: true,
+      };
     default:
       return state;
   }

@@ -47,7 +47,10 @@ class Survey extends Component {
       (paramId && surveyId && paramId !== surveyId) ||
       (paramId && paramId !== surveyId)
     ) {
-      this.setState({ surveyId: paramId });
+      this.setState({
+        surveyId: paramId,
+        error: '',
+      });
       // check if the question is in the store or not if present don't load
       if (!currentSurvey) {
         this.props.fetchSurveyById(paramId);

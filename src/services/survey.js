@@ -14,6 +14,12 @@ export function getSurveys() {
           type: types.SURVEYS,
           payload: response.data,
         });
+      })
+      .catch(error => {
+        dispatch({
+          type: types.SURVEYS_ERROR,
+          payload: error,
+        });
       });
   };
 }
@@ -31,6 +37,12 @@ export function getSurveyById(surveyId) {
           type: types.SINGLE_SURVEY,
           payload: surveyResponse,
         });
+      })
+      .catch(error => {
+        dispatch({
+          type: types.SURVEY_ERROR,
+          payload: error,
+        });
       });
   };
 }
@@ -47,6 +59,12 @@ export function submitSurvey(surveyId, submitResult) {
         dispatch({
           type: types.SUBMIT_SURVEY,
           payload: response.data,
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: types.SUBMIT_ERROR,
+          payload: error,
         });
       });
   };

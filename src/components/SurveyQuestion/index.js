@@ -88,7 +88,7 @@ export default withFormik({
       debugger;
       props.handleSubmit(props.survey.id, values);
     } else {
-      props.handleError(); /** call the error */
+     // props.handleError(); /** call the error */
     }
     // props.handleSubmit(props.survey.id, values)
   },
