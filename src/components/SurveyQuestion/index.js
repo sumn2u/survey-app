@@ -45,7 +45,7 @@ class SurveyQuestion extends React.Component {
     if (isSuccess) {
       let myColor = { background: '#0E1717', text: '#FFFFFF' };
       notify.show('Thanks for answering the survey! ', 'custom', 2000, myColor);
-      setTimeout(() => { window.location.href="/"} , 2100);  //eslint-disable-next-line
+      setTimeout(() => { window.location.href="/survey-app"} , 2100);  //eslint-disable-next-line
     }
 
     return (
